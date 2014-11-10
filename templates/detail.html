@@ -1,0 +1,23 @@
+{%- if detail.actions -%}
+<div class="btn-group">
+    {%- for action in detail.actions -%}
+        <a class="btn btn-default" href="{{ action.get_url(record) }}">
+        {{ action.label }}
+        </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+<form class="form-horizontal" action="post">
+{%- for field in detail.fields -%}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="{{ field.source }}">
+            {{ field.label }}
+        </label>
+
+        <div class="col-sm-10">
+            <p class="form-control-static">{{ field.render(record) }}</p>
+        </div>
+    </div>
+{% endfor %}
+</form>

@@ -1,0 +1,30 @@
+<table class="table">
+    <thead>
+    <tr>
+        {%- for field in table.fields -%}
+        <th>{{ field.label }}</th>
+        {% endfor %}
+        {%- if table.actions -%}
+        <th>&nbsp;</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {%- for record in data -%}
+        <tr>
+        {%- for field in table.fields -%}
+            <td>{{ field.render_short(record) }}</td>
+        {% endfor %}
+        {%- if table.actions -%}
+            <td>
+                {%- for action in table.actions -%}
+                    <a class="btn btn-link" href="{{ action.get_url(record) }}">
+                    {{ action.label }}
+                    </a>
+                {% endfor %}
+            </td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
